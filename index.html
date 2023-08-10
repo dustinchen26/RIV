@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>RB and RIV Calculation</title>
+	
+    <style>
+        body {
+            font-size: 16px;
+            font-weight: normal;
+            font-style: normal;
+        }
+        h3 {
+            font-weight: normal;
+            font-style: normal;
+        }
+        input {
+            width: 50px; /* 调整这个值以改变输入框的宽度 */
+            margin: 0;
+            line-height: 1;
+        }
+        button {
+            line-height: 1;
+        }
+    </style>	
+</head>
+<body>
+    <h style="margin: 0;">Author: Dustin Chen, email: <a href="mailto:Dustin_Chen@compal.com" style="line-height: 1;">Dustin_Chen@compal.com</a></h>
+    <br style="line-height: 0;">
+    <br style="line-height: 0;">● ref: spec 5.1.2.2.2  Downlink resource allocation type 1 
+    <br style="line-height: 0;">● ref: spec 6.1.2.2.2  Uplink resource allocation type 1 
+    <br style="line-height: 0;">ex:
+    <br style="line-height: 0;">(N_size_BWP, RB_start, L_RBs)=(273, 0, 16) => calculate RIV= 4095
+    <br style="line-height: 0;">(N_size_BWP, RB_start, L_RBs)=(273, 0, 52) => calculate RIV= 13923
+    <br style="line-height: 0;">(N_size_BWP, RB_start, L_RBs)=(273, 0, 54) => calculate RIV= 14469
+    <br style="line-height: 0;">(N_size_BWP, RB_start, L_RBs)=(273, 0, 78) => calculate RIV= 21021
+    <br style="line-height: 0;">(N_size_BWP, RB_start, L_RBs)=(273, 0, 88) => calculate RIV= 23751
+    <br style="line-height: 0;">(N_size_BWP, RB_start, L_RBs)=(273, 0, 151) => calculate RIV= 33851
+    <br style="line-height: 0;">(N_size_BWP, RB_start, L_RBs)=(273, 0, 158) => calculate RIV= 31940
+    <br style="line-height: 0;">(N_size_BWP, RB_start, L_RBs)=(273, 0, 179) => calculate RIV= 26207
+    <br style="line-height: 0;">(N_size_BWP, RB_start, L_RBs)=(273, 0, 188) => calculate RIV= 23750
+    <br style="line-height: 0;">(N_size_BWP, RB_start, L_RBs)=(273, 0, 242) => calculate RIV= 9008
+    <br style="line-height: 0;">(N_size_BWP, RB_start, L_RBs)=(273, 0, 261) => calculate RIV= 3821
+    <br style="line-height: 0;">(N_size_BWP, RB_start, L_RBs)=(273, 0, 273) => calculate RIV= 545
+    <br style="line-height: 0;">(N_size_BWP, RB_start, L_RBs)=(273, 12, 52) => calculate RIV= 13935
+    <br style="line-height: 0;">(N_size_BWP, RB_start, L_RBs)=(273, 12, 54) => calculate RIV= 14481
+    <br style="line-height: 0;">(N_size_BWP, RB_start, L_RBs)=(273, 12, 188) => calculate RIV= 23738
+    <br style="line-height: 0;">(N_size_BWP, RB_start, L_RBs)=(273, 12, 261) => calculate RIV= 3809	
+	<br><br>
+    <h2 style="margin: 0; line-height: 1;">Program 1: Calculate RIV</h2>
+    <h3 style="margin: 0; line-height: 1;">● input (N_size_BWP, RB_start, L_RBs), then it will calculate the RIV</h3>
+    <form id="program1-form">
+        <label for="N_size_BWP">N_size_BWP:</label>
+        <input type="number" id="N_size_BWP" required><br>
+        
+        <label for="RB_start">RB_start:</label>
+        <input type="number" id="RB_start" required><br>
+        
+        <label for="L_RBs">L_RBs:</label>
+        <input type="number" id="L_RBs" required><br>
+        
+        <button type="button" onclick="calculateRIV()">Calculate RIV</button>
+    </form>
+    <p id="program1-result" style="margin: 0;"></p>
+    
+	<br>
+    <h2 style="margin: 0; line-height: 1;">Program 2: Calculate RB_start and L_RBs</h2>
+    <h3 style="margin: 0; line-height: 1;">● input (N_size_BWP, RIV), then it will calculate the RB_start and L_RBs</h3>
+    <form id="program2-form">
+        <label for="N_size_BWP2">N_size_BWP:</label>
+        <input type="number" id="N_size_BWP2" required><br>
+        
+        <label for="RIV">RIV:</label>
+        <input type="number" id="RIV" required><br>
+        
+        <button type="button" onclick="calculateRBStartL_RBs()">Calculate RB_start and L_RBs</button>
+    </form>
+    <p id="program2-result" style="margin: 0;"></p>
+    
+    <script>
+        function calculateRIV() {
+            var N_size_BWP = parseInt(document.getElementById("N_size_BWP").value);
+            var RB_start = parseInt(document.getElementById("RB_start").value);
+            var L_RBs = parseInt(document.getElementById("L_RBs").value);
+            
+            var RIV = (L_RBs - 1) <= Math.floor(N_size_BWP / 2) ?
+                      N_size_BWP * (L_RBs - 1) + RB_start :
+                      N_size_BWP * (N_size_BWP - L_RBs + 1) + (N_size_BWP - 1 - RB_start);
+            
+            document.getElementById("program1-result").innerHTML = "RIV = " + RIV;
+        }
+        
+        function calculateRBStartL_RBs() {
+            var N_size_BWP = parseInt(document.getElementById("N_size_BWP2").value);
+            var RIV = parseInt(document.getElementById("RIV").value);
+            
+            var RB_start, L_RBs;
+            for (L_RBs = 1; L_RBs <= N_size_BWP; L_RBs++) {
+                for (RB_start = 0; RB_start < N_size_BWP; RB_start++) {
+                    if ((L_RBs - 1) <= Math.floor(N_size_BWP / 2) && RIV === (N_size_BWP * (L_RBs - 1) + RB_start) && L_RBs <= (N_size_BWP - RB_start)) {
+                        document.getElementById("program2-result").innerHTML = "RB_start = " + RB_start + "<br>L_RBs = " + L_RBs;
+                        return;
+                    } else if ((L_RBs - 1) > Math.floor(N_size_BWP / 2) && RIV === (N_size_BWP * (N_size_BWP - L_RBs + 1) + (N_size_BWP - 1 - RB_start)) && L_RBs <= (N_size_BWP - RB_start)) {
+                        document.getElementById("program2-result").innerHTML = "RB_start = " + RB_start + "<br>L_RBs = " + L_RBs;
+                        return;
+                    }
+                }
+            }
+            
+            document.getElementById("program2-result").innerHTML = "No valid RB_start and L_RBs found for the given RIV.";
+        }
+    </script>
+</body>
+</html>
