@@ -1,19 +1,21 @@
-# ssb_calculate
+# Purpose
 online calculate: https://dustinchen26.github.io/RIV/
 
 ## Program 1: Calculate RIV
 ● input (N_size_BWP, RB_start, L_RBs), then it will calculate the RIV
+```
 N_size_BWP: 
 RB_start: 
 L_RBs: 
 Calculate RIV
-
+```
 ## Program 2: Calculate RB_start and L_RBs
 ● input (N_size_BWP, RIV), then it will calculate the RB_start and L_RBs
+```
 N_size_BWP: 
 RIV: 
 Calculate RB_start and L_RBs
-
+```
 ## Example
 ```
 ex:
