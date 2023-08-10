@@ -1,4 +1,4 @@
-# Purpose
+# NR time resource RIV calculator
 online calculate: https://dustinchen26.github.io/RIV/
 
 ## Program 1: Calculate RIV
