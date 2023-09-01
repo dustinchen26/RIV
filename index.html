@@ -59,15 +59,15 @@
 			<li>
 				38.214 chap 6.1.2.2.2 Uplink resource allocation type 1 
 			</li>
-			<img src="https://raw.githubusercontent.com/dustinchen26/RIV/master/formula.png" alt="GitHub Image" width="350">
+			<img src="https://raw.githubusercontent.com/dustinchen26/RIV/master/formula.png" alt="GitHub Image" width="380">
 		</ul>
     </li><br>
     <li>
 		<h3><strong>(1) Calculate RIV</strong></h3>
 		<ul>
-			<li>
+
 				Input (N_size_BWP, RB_start, L_RBs), then it will calculate the RIV
-			</li>	
+
 			<li>
 				<label for="N_size_BWP">N_size_BWP:</label>
 				<input type="number" id="N_size_BWP" required value="273" ><br>
@@ -80,7 +80,7 @@
 			     <label for="L_RBs">L_RBs:</label>
 			     <input type="number" id="L_RBs" required value="16"><br>
 			</li>
-			<button type="button" onclick="calculateRIV()">Calculate RIV</button>
+			<button type="button" onclick="calculateRIV()">Calculate</button>
 			<span class="blue-text"><p id="program1-result" style="margin: 0;"></p></span>
 		</ul>
     </li><br>
@@ -88,9 +88,9 @@
     <li>
 		<h3><strong>(2) Calculate RB_start and L_RBs</strong></h3>
 		<ul>
-			<li>
+
 				input (N_size_BWP, RIV), then it will calculate the RB_start and L_RBs
-			</li>	
+
 			<li>
 				<label for="N_size_BWP2">N_size_BWP:</label>
 				<input type="number" id="N_size_BWP2" required value="273"><br>
@@ -100,7 +100,7 @@
 				<input type="number" id="RIV" required value="4095"><br>
 			</li>
 			
-			<button type="button" onclick="calculateRBStartL_RBs()">Calculate RB_start and L_RBs</button>
+			<button type="button" onclick="calculateRBStartL_RBs()">Calculat</button>
 			<span class="blue-text"><p id="program2-result" style="margin: 0;"></p></span>
 		</ul>
     </li>
